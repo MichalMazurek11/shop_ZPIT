@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:insert="fragments.html :: headerfiles">
+</head>
+<body>
+	<header th:insert="fragments.html :: nav"></header>
+	<div class="container">
+	
+	<div class="row my-5">
+
+		
+	</div>
+
+		<div
+			style="width: 600px; margin-left: auto; margin-right: auto; margin-top: 24px; padding: 24px;">
+			<div class="card">
+				<div class="card-block" style="padding: 24px;">
+					<form th:action="@{/shop/category-form/add-category}" method="post">
+						<fieldset>
+							<div class="form-group">
+								<label for="categoryName">Nazwa: </label> <input
+									type="text" class="form-control" id="categoryName" name="categoryName" placeholder="Podaj nazwe kategorii">
+							</div>
+							<div class="form-actions" style="margin-top: 12px;">
+								<button type="submit" style="float: right;" class="btn btn-primary">DODAJ</button>
+							</div>
+						</fieldset>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<table class="table col-7">
+		<thead>
+		<tr>
+			<th scope="col">#</th>
+			<th scope="col">Nazwa kategorii: </th>
+			<th scope="col"></th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr th:each="category : ${categoryList}">
+			<th scope="row" </th>
+			<td th:text="${category.categoryName}"></td>
+			<td>
+				<a href="#" th:href="@{'/shop/category-form/delete-Category/'+ ${category.categoryId}}"
+				   class="btn btn-danger">Delete</a>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+
+
+</body>
+</html>

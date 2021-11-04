@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:insert="fragments.html :: headerfiles">
+
+</head>
+<body>
+<header th:insert="fragments.html :: nav"></header>
+
+
+<div class="container" >
+	<h1 class="display-4">Zamówienie </h1>
+	<div class="row">
+		<ul class="list-group col-9">
+			<li class="list-group-item d-flex justify-content-around">
+				<span class="my-auto h6">Produkt:</span>
+				<span class="my-auto h6">Nazwa:</span>
+				<span class="my-auto h6">Cena:</span>
+				<span class="my-auto h6">ilosc:</span>
+
+			</li>
+		</ul>
+
+		<ul class="list-group col-9" th:each="cart : ${cartList}">
+			<li class="list-group-item d-flex justify-content-around">
+				<img th:src="${cart.item.image}" width="100px">
+				<span class="my-auto" th:text="${cart.item.getItemName()}">></span>
+				<span class="my-auto" th:text="${cart.item.getItemPrice()}+' zł'"></span>
+				<span class="my-auto" th:text="${cart.quantity}"></span>
+			</li>
+		</ul>
+		<ul class="list-group col-9">
+			<li class="list-group-item d-flex justify-content-end">
+				<span class="h6" th:text="'Suma: '+${total} + ' zł'"></span>
+			</li>
+			<li class="list-group-item d-flex justify-content-end">	<form th:action="@{'/shop/shopingCart/delete/'}"  method="GET">
+				<button id="button3"  type="submit"  style="float: left;" class="btn btn-danger"> Usuń koszyk  </button>
+			</form>
+			</li>
+			<li class="list-group-item d-flex justify-content-end">
+				<div>
+				<form th:action="@{'/shop/shopingCart/purchase'}" method="GET">
+					<button id="button2" type="submit" style="float: right;" class="btn btn-primary"  >Zamów</button>
+					<h1 style="float: left;margin-right: 30px;width: 17em;" th:if="${message}">	<div class="alert alert-success" role="alert">
+						<h4 th:text="${message}" align="center"></h4>
+					</h1>
+					<h1 style="float: left;margin-right: 30px;width: 17em;" th:if="${message2}">	<div class="alert alert-danger" role="alert">
+						<h4 th:text="${message2}" ></h4>
+					</h1>
+				</div>
+			</li>
+
+		</ul>
+	</div>
+</div>
+
+
+
+</body>
+</html>

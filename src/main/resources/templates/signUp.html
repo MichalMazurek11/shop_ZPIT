@@ -1,0 +1,83 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments.html :: headerfiles">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<div class="container">
+    <div style="width: 800px; margin-left: auto; margin-right: auto; margin-top: 24px; padding: 24px;">
+<div class="card">
+    <div class="card-header">
+        <i class="fa fa-user"></i> Zarejestruj się</div>
+    <div class="card-block" style="padding: 24px;">
+        <form th:action="@{/signup}" method="post" th:object="${userDto}">
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="email">Email</label>
+            <i class="fa fa-envelope" aria-hidden="true"></i>    <input type="text" class="form-control" id="email" name="email"  placeholder="Email" th:field="*{email}">
+            <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="alert alert-danger" role="alert">Name Error</p>
+            <span  align="center" th:if="${message}">	<div class="alert alert-danger" role="alert">
+                <span th:text="${message}">  </span>
+            </div></span>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="password">Haslo</label>
+            <i class="fa fa-lock"  aria-hidden="true"></i>  <input type="password" class="form-control" id="password"  name="password"  placeholder="Password" th:field="*{password}" >
+            <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="alert alert-danger" role="alert">Name Error</p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="adress">Ulia i nr budynku</label>
+      <input type="text" class="form-control" id="adress" name="adress" placeholder="" th:field="*{adress}">
+        <p th:if="${#fields.hasErrors('adress')}" th:errors="*{adress}" class="alert alert-danger" role="alert">Name Error</p>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="city">Miasto</label>
+            <input type="text" class="form-control" id="city" name="city" th:field="*{city}">
+            <p th:if="${#fields.hasErrors('city')}" th:errors="*{city}" class="alert alert-danger" role="alert">Name Error</p>
+        </div>
+
+        <div class="form-group col-md-4">
+            <label for="state">Województwo</label>
+            <select id="state" class="form-control" name="state" >
+                <option>dolnośląskie</option>
+                <option>kujawsko-pomorskie</option>
+                <option>lubelskie</option>
+                <option>lubuskie</option>
+                <option>łódzkie</option>
+                <option>małopolskie</option>
+                <option>mazowieckie</option>
+                <option>opolskie</option>
+                <option>podkarpackie</option>
+                <option>podlaskie</option>
+                <option>pomorskie</option>
+                <option>śląskie</option>
+                <option>świętokrzyskie</option>
+                <option>warmińsko-mazurskie</option>
+                <option>wielkopolskie</option>
+                <option>zachodniopomorskie</option>
+            </select>
+            <p th:if="${#fields.hasErrors('state')}" th:errors="*{state}" class="alert alert-danger" role="alert">Name Error</p>
+        </div>
+        <div class="form-group col-md-2">
+            <label for="zipCode">Kod-pocztowy</label>
+            <input type="text" class="form-control" id="zipCode" name="zipCode" th:field="*{zipCode}">
+            <p th:if="${#fields.hasErrors('zipCode')}" th:errors="*{zipCode}" class="alert alert-danger" role="alert">Name Error</p>
+        </div>
+    </div>
+
+    <div>
+    <button type="submit" class="btn btn-primary" style="float: right;">Zarejestruj się</button>
+        </form>
+    <form th:action="@{/login}" method="GET"><button  type="submit" class="btn btn-info">Cofnij</button></form>
+    </div>
+    </div>
+</div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
